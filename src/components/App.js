@@ -21,26 +21,26 @@ class App extends Component {
   }
   
   componentDidMount() {
-    axios.get('https://practiceapi.devmountain.com/api/posts').then( results => {
-      this.setState({ posts: results.data });
+    axios.get('https://practiceapi.devmountain.com/api/posts').then( result => {
+      this.setState({ posts: result.data });
     });
   }
 
   updatePost( id, text ) {
-    axios.put(`https://practiceapi.devmountain.com/api/posts?id=${ id }`, { text }).then( results => {
-      this.setState({ posts: results.data });
+    axios.put(`https://practiceapi.devmountain.com/api/posts?id=${ id }`, { text }).then( result => {
+      this.setState({ posts: result.data });
     });
   }
 
   deletePost(id) {
-    axios.delete(`https://practiceapi.devmountain.com/api/posts?id=${ id }`).then( results => {
-      this.setState({ posts: results.data });
+    axios.delete(`https://practiceapi.devmountain.com/api/posts?id=${ id }`).then( result => {
+      this.setState({ posts: result.data });
     });
   }
 
   createPost(text) {
-    axios.delete(`https://practiceapi.devmountain.com/api/posts?id=${ text }`).then( results => {
-      this.setState({ posts: results.data });
+    axios.delete(`https://practiceapi.devmountain.com/api/posts?id=${ text }`).then( result => {
+      this.setState({ posts: result.data });
     });
   }
 
@@ -58,9 +58,9 @@ class App extends Component {
           {
             posts.map( post => (
             <Post key = { post.id }
+                  id = { post.id }
                   text = { post.text }
                   date = { post.date } 
-                  id = { post.id }
                   updatePostFn = { this.updatePost }
                   deletePostFn = { this.deletePost } />))
           }
